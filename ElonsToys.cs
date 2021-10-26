@@ -3,6 +3,7 @@ using System;
 class RemoteControlCar
 
 {
+   
     private int _totalDistance;
     private int _actualBattery;
     public static RemoteControlCar Buy() => new RemoteControlCar();
@@ -27,11 +28,17 @@ class RemoteControlCar
 
     public string BatteryDisplay()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.BatteryDisplay() method");
+        if (_actualBattery == 100) return "Battery at 100%";
+        if (_actualBattery == 0) return "Battery empty";
+        return string.Format("Battery at {0}%", _actualBattery);
     }
 
     public void Drive()
     {
-        throw new NotImplementedException("Please implement the RemoteControlCar.Drive() method");
+        if (_actualBattery > 0)
+        {
+            _totalDistance += 20;
+            _actualBattery -= 1;
+        }
     }
 }
